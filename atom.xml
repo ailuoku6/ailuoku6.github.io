@@ -5,9 +5,9 @@
   <subtitle>潜伏</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
+  <link href="http://blog.ailuoku6.top/"/>
   <updated>2018-10-27T13:28:05.158Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>http://blog.ailuoku6.top/</id>
   
   <author>
     <name>ailuoku6</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="http://yoursite.com/2018/10/27/hello-world/"/>
-    <id>http://yoursite.com/2018/10/27/hello-world/</id>
+    <link href="http://blog.ailuoku6.top/2018/10/27/hello-world/"/>
+    <id>http://blog.ailuoku6.top/2018/10/27/hello-world/</id>
     <published>2018-10-27T13:28:05.158Z</published>
     <updated>2018-10-27T13:28:05.158Z</updated>
     
