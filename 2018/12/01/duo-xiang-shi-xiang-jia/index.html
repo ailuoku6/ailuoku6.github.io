@@ -1,0 +1,667 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="多项式相加, ailuoku6-blog">
+    <meta name="description" content="数据结构之多项式代码#include&amp;lt;stdio.h&gt;
+#include &amp;lt;stdlib.h&gt;
+
+#define ERROR -1
+#define OK 1
+
+typedef int ElemType;
+typedef int ">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>多项式相加 | ailuoku6-blog</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+</head>
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="container">
+            <div class="nav-wrapper">
+                <div class="brand-logo">
+                    <a href="/" class="waves-effect waves-light">
+                        
+                        <img src="/medias/logo.png" class="logo-img hide-on-small-only">
+                        
+                        <span class="logo-span">ailuoku6-blog</span>
+                    </a>
+                </div>
+                <a href="#" data-activates="mobile-nav" class="button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于</span>
+        </a>
+    </li>
+    
+    <li>
+        <a id="toggleSearch" class="waves-effect waves-light">
+            <i id="searchIcon" class="mdi-action-search"></i>
+        </a>
+    </li>
+
+</ul>
+
+<div class="side-nav" id="mobile-nav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">ailuoku6-blog</div>
+        <div class="logo-desc">
+            
+            你的每一行代码，都藏着曾经读过的书，走过的路，和爱过的人
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于
+            </a>
+        </li>
+        
+        
+    </ul>
+
+    <div class="social-link"><a href="https://github.com/ailuoku6" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+    <i class="fa fa-github"></i>
+</a>
+<a href="mailto:ailuoku6@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+
+<a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+    <i class="fa fa-rss"></i>
+</a>
+</div>
+</div>
+
+            </div>
+        </div>
+
+        
+    </nav>
+</header>
+
+
+
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        多项式相加
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="container content">
+
+    
+    <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            
+            <div class="article-tag">
+                
+                <a href="/tags/数据结构/" target="_blank">
+                    <span class="chip bg-color">数据结构</span>
+                </a>
+                
+            </div>
+            
+            <div class="post-info">
+                
+                <span class="post-cate">
+                    <i class="fa fa-bookmark fa-fw icon-category"></i>
+                    
+                    <a href="/categories/c语言/" class="post-category" target="_blank">
+                        c语言
+                    </a>
+                    
+                </span>
+                
+
+                <span class="post-date">
+                    <i class="fa fa-clock-o fa-fw"></i>2018-12-01
+                </span>
+            </div>
+        </div>
+        <hr>
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="数据结构之多项式"><a href="#数据结构之多项式" class="headerlink" title="数据结构之多项式"></a>数据结构之多项式</h2><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre class=" language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h></span></span>
+
+<span class="token macro property">#<span class="token directive keyword">define</span> ERROR -1</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> OK 1</span>
+
+<span class="token keyword">typedef</span> <span class="token keyword">int</span> ElemType<span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">int</span> status<span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//指数升序排列,第一项不存值,由于用了cpp的引用特性,需要用cpp的编译器</span>
+
+<span class="token keyword">typedef</span> <span class="token keyword">struct</span> mulnode<span class="token punctuation">{</span>
+    ElemType coef<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//系数</span>
+    ElemType expo<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//指数</span>
+    <span class="token keyword">struct</span> mulnode <span class="token operator">*</span>next<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>mulnode<span class="token punctuation">,</span><span class="token operator">*</span>mult<span class="token punctuation">;</span>
+
+status <span class="token function">AddItem</span><span class="token punctuation">(</span>mult <span class="token operator">&amp;</span>List<span class="token punctuation">,</span>ElemType coef<span class="token punctuation">,</span>ElemType expo<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    mult q<span class="token punctuation">,</span>temp<span class="token punctuation">;</span>
+    mult p <span class="token operator">=</span> List<span class="token punctuation">;</span>
+    q <span class="token operator">=</span> <span class="token punctuation">(</span>mult<span class="token punctuation">)</span> <span class="token function">malloc</span><span class="token punctuation">(</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>mulnode<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    q<span class="token operator">-></span>coef <span class="token operator">=</span> coef<span class="token punctuation">;</span>q<span class="token operator">-></span>expo <span class="token operator">=</span> expo<span class="token punctuation">;</span>q<span class="token operator">-></span>next <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>p<span class="token operator">-></span>next<span class="token operator">!=</span><span class="token constant">NULL</span><span class="token operator">&amp;&amp;</span>p<span class="token operator">-></span>next<span class="token operator">-></span>expo<span class="token operator">&lt;</span>expo<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        p <span class="token operator">=</span> p<span class="token operator">-></span>next<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>p<span class="token operator">-></span>next<span class="token operator">!=</span><span class="token constant">NULL</span><span class="token operator">&amp;&amp;</span>p<span class="token operator">-></span>next<span class="token operator">-></span>expo<span class="token operator">==</span>expo<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        p<span class="token operator">-></span>next<span class="token operator">-></span>coef<span class="token operator">+</span><span class="token operator">=</span>coef<span class="token punctuation">;</span>
+        <span class="token keyword">return</span> OK<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    q<span class="token operator">-></span>next <span class="token operator">=</span> p<span class="token operator">-></span>next<span class="token punctuation">;</span>
+    p<span class="token operator">-></span>next <span class="token operator">=</span> q<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> OK<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">//初始化并赋初值为0</span>
+status <span class="token function">InitMult</span><span class="token punctuation">(</span>mult <span class="token operator">&amp;</span>p<span class="token punctuation">,</span><span class="token keyword">int</span> count<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    ElemType coef<span class="token punctuation">,</span>expo<span class="token punctuation">;</span>
+    mult temp<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//临时节点指针</span>
+    p <span class="token operator">=</span> <span class="token punctuation">(</span>mult<span class="token punctuation">)</span> <span class="token function">malloc</span><span class="token punctuation">(</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>mulnode<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>p<span class="token punctuation">)</span> <span class="token keyword">return</span> ERROR<span class="token punctuation">;</span>
+    p<span class="token operator">-></span>coef <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    p<span class="token operator">-></span>expo <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    p<span class="token operator">-></span>next <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>count<span class="token operator">--</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d %d"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>coef<span class="token punctuation">,</span><span class="token operator">&amp;</span>expo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">AddItem</span><span class="token punctuation">(</span>p<span class="token punctuation">,</span>coef<span class="token punctuation">,</span>expo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> OK<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+status <span class="token function">ReadMult</span><span class="token punctuation">(</span>mult p<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"(%d,%d)  "</span><span class="token punctuation">,</span>p<span class="token operator">-></span>coef<span class="token punctuation">,</span>p<span class="token operator">-></span>expo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        p <span class="token operator">=</span> p<span class="token operator">-></span>next<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"\n----------------------------------------\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> OK<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">//多项式相加，结果存到p1</span>
+status <span class="token function">AddMult</span><span class="token punctuation">(</span>mult <span class="token operator">&amp;</span>p1<span class="token punctuation">,</span>mult <span class="token operator">&amp;</span>p2<span class="token punctuation">,</span>mult<span class="token operator">&amp;</span>p3<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    mult pa<span class="token punctuation">,</span>pb<span class="token punctuation">,</span>pre<span class="token punctuation">,</span>T<span class="token punctuation">;</span>
+    pa <span class="token operator">=</span> p1<span class="token operator">-></span>next<span class="token punctuation">;</span>
+    pb <span class="token operator">=</span> p2<span class="token operator">-></span>next<span class="token punctuation">;</span>
+    pre <span class="token operator">=</span> p3<span class="token punctuation">;</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>pa<span class="token operator">&amp;&amp;</span>pb<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        T <span class="token operator">=</span> <span class="token punctuation">(</span>mult<span class="token punctuation">)</span> <span class="token function">malloc</span><span class="token punctuation">(</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>mulnode<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        T<span class="token operator">-></span>next <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>pa<span class="token operator">-></span>expo<span class="token operator">&lt;</span>pb<span class="token operator">-></span>expo<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            T<span class="token operator">-></span>coef <span class="token operator">=</span> pa<span class="token operator">-></span>coef<span class="token punctuation">;</span>
+            T<span class="token operator">-></span>expo <span class="token operator">=</span> pa<span class="token operator">-></span>expo<span class="token punctuation">;</span>
+            pa <span class="token operator">=</span> pa<span class="token operator">-></span>next<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>pa<span class="token operator">-></span>expo <span class="token operator">==</span> pb<span class="token operator">-></span>expo<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            T<span class="token operator">-></span>coef <span class="token operator">=</span> pa<span class="token operator">-></span>coef<span class="token operator">+</span>pb<span class="token operator">-></span>coef<span class="token punctuation">;</span>
+            T<span class="token operator">-></span>expo <span class="token operator">=</span> pa<span class="token operator">-></span>expo<span class="token punctuation">;</span>
+            pa <span class="token operator">=</span> pa<span class="token operator">-></span>next<span class="token punctuation">;</span>
+            pb <span class="token operator">=</span> pb<span class="token operator">-></span>next<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span><span class="token punctuation">{</span>
+            T<span class="token operator">-></span>coef <span class="token operator">=</span> pb<span class="token operator">-></span>coef<span class="token punctuation">;</span>
+            T<span class="token operator">-></span>expo <span class="token operator">=</span> pb<span class="token operator">-></span>expo<span class="token punctuation">;</span>
+            pb <span class="token operator">=</span> pb<span class="token operator">-></span>next<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        pre<span class="token operator">-></span>next <span class="token operator">=</span> T<span class="token punctuation">;</span>
+        pre <span class="token operator">=</span> pre<span class="token operator">-></span>next<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    pre<span class="token operator">-></span>next <span class="token operator">=</span> pa<span class="token operator">?</span>pa<span class="token punctuation">:</span>pb<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> OK<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    mult p1<span class="token punctuation">,</span>p2<span class="token punctuation">,</span>p3<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> p1_length<span class="token punctuation">,</span>p2_length<span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"请输入p1多项式长度:\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>p1_length<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"请输入p2多项式长度:\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>p2_length<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">InitMult</span><span class="token punctuation">(</span>p1<span class="token punctuation">,</span>p1_length<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">InitMult</span><span class="token punctuation">(</span>p2<span class="token punctuation">,</span>p2_length<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">InitMult</span><span class="token punctuation">(</span>p3<span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">ReadMult</span><span class="token punctuation">(</span>p1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">ReadMult</span><span class="token punctuation">(</span>p2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">AddMult</span><span class="token punctuation">(</span>p1<span class="token punctuation">,</span>p2<span class="token punctuation">,</span>p3<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">ReadMult</span><span class="token punctuation">(</span>p3<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+
+            </div>
+            <hr>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff;
+        background-color: #22AB38;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff;
+        background-color: #019FE8;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a class="reward-link btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs">
+                        <li class="tab wechat-tab waves-effect waves-light"><a class="active" href="#wechat">微信</a></li>
+                        <li class="tab alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                    </ul>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('#reward .reward-link').on('click', function () {
+            $('#rewardModal').openModal();
+        });
+
+        $('#rewardModal .close').on('click', function () {
+            $('#rewardModal').closeModal();
+        });
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            <div class="reprint">
+                <p>
+                    <span class="reprint-tip">转载请注明: </span>
+                    <a href="http://blog.ailuoku6.top" class="b-link-green">ailuoku6-blog</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2018/12/01/duo-xiang-shi-xiang-jia/" class="b-link-green">多项式相加</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">本篇</div>
+            <div class="card">
+                <a href="/2018/12/01/duo-xiang-shi-xiang-jia/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="多项式相加">
+                        
+                        <span class="card-title">多项式相加</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">数据结构之多项式代码#include&lt;stdio.h>
+#include &lt;stdlib.h>
+
+#define ERROR -1
+#define OK 1
+
+typedef int ElemType;
+typedef int </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-12-01
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/c语言/" class="post-category" target="_blank">
+                                    c语言
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/数据结构/" target="_blank">
+                        <span class="chip bg-color">数据结构</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">下一篇</div>
+            <div class="card">
+                <a href="/2018/11/18/jin-nian-shu-jia-bu-ac/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="今年暑假不AC">
+                        
+                        <span class="card-title">今年暑假不AC</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">Description“今年暑假不AC？”“是的。”“那你干什么呢？”“看世界杯呀，笨蛋！”“@#$%^&amp;*%…”
+确实如此，世界杯来了，球迷的节日也来了，估计很多ACMer也会抛开电脑，奔向电视了。作为球迷，一定想看尽量多的完整的</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-11-18
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/c语言/" class="post-category" target="_blank">
+                                    c语言
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/ACM/" target="_blank">
+                        <span class="chip bg-color">ACM</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+    
+
+</main>
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 采用
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>的主题搭建.
+        </div>
+        <div class="col s12 m4 l4 social-link"><a href="https://github.com/ailuoku6" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+    <i class="fa fa-github"></i>
+</a>
+<a href="mailto:ailuoku6@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+
+<a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+    <i class="fa fa-rss"></i>
+</a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title">搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字" class="search-input" autofocus>
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/js/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+</body>
+</html>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.ailuoku6.top/"/>
-  <updated>2018-11-18T03:35:01.704Z</updated>
+  <updated>2018-12-01T11:23:13.620Z</updated>
   <id>http://blog.ailuoku6.top/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>多项式相加</title>
+    <link href="http://blog.ailuoku6.top/2018/12/01/duo-xiang-shi-xiang-jia/"/>
+    <id>http://blog.ailuoku6.top/2018/12/01/duo-xiang-shi-xiang-jia/</id>
+    <published>2018-12-01T11:19:50.000Z</published>
+    <updated>2018-12-01T11:23:13.620Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;数据结构之多项式&quot;&gt;&lt;a href=&quot;#数据结构之多项式&quot; class=&quot;headerlink&quot; title=&quot;数据结构之多项式&quot;&gt;&lt;/a&gt;数据结构之多项式&lt;/h2&gt;&lt;h3 id=&quot;代码&quot;&gt;&lt;a href=&quot;#代码&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="c语言" scheme="http://blog.ailuoku6.top/categories/c%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="数据结构" scheme="http://blog.ailuoku6.top/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+  </entry>
   
   <entry>
     <title>今年暑假不AC</title>
