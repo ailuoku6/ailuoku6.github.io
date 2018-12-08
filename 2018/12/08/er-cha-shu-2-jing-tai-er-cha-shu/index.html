@@ -6,14 +6,16 @@
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
     <meta name="keywords" content="二叉树2静态二叉树, ailuoku6-blog">
-    <meta name="description" content="数据结构之二叉树代码#include &amp;lt;stdio.h&gt;
+    <meta name="description" content="数据结构之二叉树
+二叉树的先序、中序、后序遍历
+动态二叉树转化成静态二叉树
+
+代码#include &amp;lt;stdio.h&gt;
 #include &amp;lt;stdlib.h&gt;
 
 #define OK 1
 #define ERROR -1
-#define MAX 100
-
-typedef int Statu">
+#de">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -245,7 +247,11 @@ typedef int Statu">
         <hr>
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="数据结构之二叉树"><a href="#数据结构之二叉树" class="headerlink" title="数据结构之二叉树"></a>数据结构之二叉树</h2><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre class=" language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+                <h2 id="数据结构之二叉树"><a href="#数据结构之二叉树" class="headerlink" title="数据结构之二叉树"></a>数据结构之二叉树</h2><ul>
+<li>二叉树的先序、中序、后序遍历</li>
+<li>动态二叉树转化成静态二叉树</li>
+</ul>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre class=" language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
 <span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h></span></span>
 
 <span class="token macro property">#<span class="token directive keyword">define</span> OK 1</span>
@@ -276,10 +282,10 @@ Status <span class="token function">CreateBiTree</span><span class="token punctu
     T <span class="token operator">=</span> <span class="token punctuation">(</span>Node_p<span class="token punctuation">)</span> <span class="token function">malloc</span><span class="token punctuation">(</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>BiTnode<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>T<span class="token punctuation">)</span> <span class="token keyword">return</span> ERROR<span class="token punctuation">;</span>
     T<span class="token operator">-></span>data <span class="token operator">=</span> item<span class="token punctuation">;</span>
-    <span class="token function">getchar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%c 的左孩子:\n"</span><span class="token punctuation">,</span>item<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">getchar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token function">CreateBiTree</span><span class="token punctuation">(</span>T<span class="token operator">-></span>lchild<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%c 的右孩子"</span><span class="token punctuation">,</span>item<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%c 的右孩子:\n"</span><span class="token punctuation">,</span>item<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token function">getchar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token function">CreateBiTree</span><span class="token punctuation">(</span>T<span class="token operator">-></span>rchild<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
@@ -359,50 +365,46 @@ Status <span class="token function">ReadBirlr</span><span class="token punctuati
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
+<h3 id="二叉树用例"><a href="#二叉树用例" class="headerlink" title="二叉树用例"></a>二叉树用例</h3><p><img src="img/bitree.png"></p>
 <h3 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h3><pre class=" language-c"><code class="language-c">请输入结点的值<span class="token punctuation">(</span>空格代表结束<span class="token punctuation">)</span><span class="token punctuation">:</span>
+e
+e 的左孩子<span class="token punctuation">:</span>
+请输入结点的值<span class="token punctuation">(</span>空格代表结束<span class="token punctuation">)</span><span class="token punctuation">:</span>
 g
 g 的左孩子<span class="token punctuation">:</span>
 请输入结点的值<span class="token punctuation">(</span>空格代表结束<span class="token punctuation">)</span><span class="token punctuation">:</span>
-s
-s 的左孩子<span class="token punctuation">:</span>
-请输入结点的值<span class="token punctuation">(</span>空格代表结束<span class="token punctuation">)</span><span class="token punctuation">:</span>
-d
-d 的左孩子<span class="token punctuation">:</span>
-请输入结点的值<span class="token punctuation">(</span>空格代表结束<span class="token punctuation">)</span><span class="token punctuation">:</span>
-x
-x 的左孩子<span class="token punctuation">:</span>
-请输入结点的值<span class="token punctuation">(</span>空格代表结束<span class="token punctuation">)</span><span class="token punctuation">:</span>
-c
-c 的左孩子<span class="token punctuation">:</span>
+t
+t 的左孩子<span class="token punctuation">:</span>
 请输入结点的值<span class="token punctuation">(</span>空格代表结束<span class="token punctuation">)</span><span class="token punctuation">:</span>
 
-c 的右孩子请输入结点的值<span class="token punctuation">(</span>空格代表结束<span class="token punctuation">)</span><span class="token punctuation">:</span>
-
-x 的右孩子请输入结点的值<span class="token punctuation">(</span>空格代表结束<span class="token punctuation">)</span><span class="token punctuation">:</span>
-
-d 的右孩子请输入结点的值<span class="token punctuation">(</span>空格代表结束<span class="token punctuation">)</span><span class="token punctuation">:</span>
-
-s 的右孩子请输入结点的值<span class="token punctuation">(</span>空格代表结束<span class="token punctuation">)</span><span class="token punctuation">:</span>
-
-g 的右孩子请输入结点的值<span class="token punctuation">(</span>空格代表结束<span class="token punctuation">)</span><span class="token punctuation">:</span>
-v
-v 的左孩子<span class="token punctuation">:</span>
+t 的右孩子<span class="token punctuation">:</span>
 请输入结点的值<span class="token punctuation">(</span>空格代表结束<span class="token punctuation">)</span><span class="token punctuation">:</span>
 
-v 的右孩子请输入结点的值<span class="token punctuation">(</span>空格代表结束<span class="token punctuation">)</span><span class="token punctuation">:</span>
-x
-x 的左孩子<span class="token punctuation">:</span>
+g 的右孩子<span class="token punctuation">:</span>
 请输入结点的值<span class="token punctuation">(</span>空格代表结束<span class="token punctuation">)</span><span class="token punctuation">:</span>
 
-x 的右孩子请输入结点的值<span class="token punctuation">(</span>空格代表结束<span class="token punctuation">)</span><span class="token punctuation">:</span>
+e 的右孩子<span class="token punctuation">:</span>
+请输入结点的值<span class="token punctuation">(</span>空格代表结束<span class="token punctuation">)</span><span class="token punctuation">:</span>
+k
+k 的左孩子<span class="token punctuation">:</span>
+请输入结点的值<span class="token punctuation">(</span>空格代表结束<span class="token punctuation">)</span><span class="token punctuation">:</span>
+y
+y 的左孩子<span class="token punctuation">:</span>
+请输入结点的值<span class="token punctuation">(</span>空格代表结束<span class="token punctuation">)</span><span class="token punctuation">:</span>
+
+y 的右孩子<span class="token punctuation">:</span>
+请输入结点的值<span class="token punctuation">(</span>空格代表结束<span class="token punctuation">)</span><span class="token punctuation">:</span>
+
+k 的右孩子<span class="token punctuation">:</span>
+请输入结点的值<span class="token punctuation">(</span>空格代表结束<span class="token punctuation">)</span><span class="token punctuation">:</span>
 
 </code></pre>
-<h3 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h3><pre class=" language-c"><code class="language-c">g s d x c v x 
-c x d s g v x 
-c x d s x v g 
- <span class="token number">1</span>  <span class="token number">2</span>  <span class="token number">3</span>  <span class="token number">4</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token operator">-</span><span class="token number">1</span> 
- g  s  d  x  c  v  x 
- <span class="token number">5</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token operator">-</span><span class="token number">1</span>  <span class="token number">6</span> <span class="token operator">-</span><span class="token number">1</span> 
+<h3 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h3><pre class=" language-c"><code class="language-c">e g t k y 
+t g e y k 
+t g y k e 
+ <span class="token number">1</span>  <span class="token number">2</span> <span class="token operator">-</span><span class="token number">1</span>  <span class="token number">4</span> <span class="token operator">-</span><span class="token number">1</span> 
+ e  g  t  k  y 
+ <span class="token number">3</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token operator">-</span><span class="token number">1</span> 
 </code></pre>
 
             </div>
@@ -574,14 +576,16 @@ c x d s x v g
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">数据结构之二叉树代码#include &lt;stdio.h>
+                    <div class="summary">数据结构之二叉树
+二叉树的先序、中序、后序遍历
+动态二叉树转化成静态二叉树
+
+代码#include &lt;stdio.h>
 #include &lt;stdlib.h>
 
 #define OK 1
 #define ERROR -1
-#define MAX 100
-
-typedef int Statu</div>
+#de</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2018-12-08
