@@ -14,10 +14,8 @@
 #include &amp;lt;stdlib.h&gt;
 
 #define MAX 30
-
-int book[MAX] = {0,};
-
-ty">
+#define TRUE 1
+#define FAL">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -257,6 +255,8 @@ ty">
 <span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h></span></span>
 
 <span class="token macro property">#<span class="token directive keyword">define</span> MAX 30</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> TRUE 1</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> FALSE 0</span>
 
 <span class="token keyword">int</span> book<span class="token punctuation">[</span>MAX<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
 
@@ -287,9 +287,6 @@ ty">
         L<span class="token punctuation">.</span>vertices<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>link <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
     <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> vexnum<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">//edgeNode_last = L.vertices[i].link;</span>
-
-        <span class="token comment" spellcheck="true">//edgeNode_p2 = L.vertices[i].link;</span>
 
         <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"请输入第%d个顶点的值:\n"</span><span class="token punctuation">,</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%c%*c"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>L<span class="token punctuation">.</span>vertices<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -302,16 +299,11 @@ ty">
                 <span class="token keyword">continue</span><span class="token punctuation">;</span>
             <span class="token punctuation">}</span>
 
-
-<span class="token comment" spellcheck="true">//            while (edgeNode_p2->next!=NULL) {</span>
-<span class="token comment" spellcheck="true">//                edgeNode_p2 = edgeNode_p2->next;</span>
-<span class="token comment" spellcheck="true">//            }</span>
+            <span class="token comment" spellcheck="true">//使用头插法加入边表结点</span>
 
             edgeNode_p <span class="token operator">=</span> <span class="token punctuation">(</span>edgeNode<span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>edgeNode<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
             edgeNode_p<span class="token operator">-></span>adjvex <span class="token operator">=</span> p<span class="token number">-1</span><span class="token punctuation">;</span>
             edgeNode_p<span class="token operator">-></span>next <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
-
-            <span class="token comment" spellcheck="true">//edgeNode_p2->next = edgeNode_p;</span>
             temp <span class="token operator">=</span> L<span class="token punctuation">.</span>vertices<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>link<span class="token punctuation">;</span>
             edgeNode_p<span class="token operator">-></span>next <span class="token operator">=</span> temp<span class="token punctuation">;</span>
             L<span class="token punctuation">.</span>vertices<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>link <span class="token operator">=</span> edgeNode_p<span class="token punctuation">;</span>
@@ -330,13 +322,12 @@ ty">
 <span class="token punctuation">}</span>
 
 <span class="token keyword">void</span> <span class="token function">DFS</span><span class="token punctuation">(</span>Graph L<span class="token punctuation">,</span><span class="token keyword">int</span> point<span class="token punctuation">)</span><span class="token punctuation">{</span>
-    book<span class="token punctuation">[</span>point<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    book<span class="token punctuation">[</span>point<span class="token punctuation">]</span> <span class="token operator">=</span> TRUE<span class="token punctuation">;</span>
     edgenode <span class="token operator">*</span>p <span class="token operator">=</span> L<span class="token punctuation">.</span>vertices<span class="token punctuation">[</span>point<span class="token punctuation">]</span><span class="token punctuation">.</span>link<span class="token punctuation">;</span>
     <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%c     "</span><span class="token punctuation">,</span>L<span class="token punctuation">.</span>vertices<span class="token punctuation">[</span>point<span class="token punctuation">]</span><span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">while</span> <span class="token punctuation">(</span>p<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>book<span class="token punctuation">[</span>p<span class="token operator">-></span>adjvex<span class="token punctuation">]</span><span class="token operator">!=</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>book<span class="token punctuation">[</span>p<span class="token operator">-></span>adjvex<span class="token punctuation">]</span><span class="token operator">!=</span>TRUE<span class="token punctuation">)</span>
             <span class="token function">DFS</span><span class="token punctuation">(</span>L<span class="token punctuation">,</span> p<span class="token operator">-></span>adjvex<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
         p <span class="token operator">=</span> p<span class="token operator">-></span>next<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
@@ -345,7 +336,7 @@ ty">
     <span class="token keyword">int</span> nodenum <span class="token operator">=</span> L<span class="token punctuation">.</span>vexnum<span class="token punctuation">;</span>
     <span class="token keyword">int</span> start<span class="token punctuation">;</span>
     <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span>nodenum<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token comment" spellcheck="true">//标记访问状态</span>
-        book<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        book<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> FALSE<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
     <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"请输入搜索起始点:\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>start<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -362,6 +353,7 @@ ty">
     <span class="token function">DFS_Tra</span><span class="token punctuation">(</span>L<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
+
 
 </code></pre>
 <h3 id="图用例"><a href="#图用例" class="headerlink" title="图用例"></a>图用例</h3><p><img src="https://raw.githubusercontent.com/ailuoku6/ailuoku6.github.io/master/img/graph_demo.png" alt="图用例" title="图用例"></p>
@@ -604,10 +596,8 @@ ty">
 #include &lt;stdlib.h>
 
 #define MAX 30
-
-int book[MAX] = {0,};
-
-ty</div>
+#define TRUE 1
+#define FAL</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2018-12-19
