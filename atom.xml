@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.ailuoku6.top/"/>
-  <updated>2019-02-10T09:02:23.744Z</updated>
+  <updated>2019-04-21T08:52:20.953Z</updated>
   <id>http://blog.ailuoku6.top/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>词法分析器</title>
+    <link href="http://blog.ailuoku6.top/2019/04/21/ci-fa-fen-xi-qi/"/>
+    <id>http://blog.ailuoku6.top/2019/04/21/ci-fa-fen-xi-qi/</id>
+    <published>2019-04-21T08:46:10.000Z</published>
+    <updated>2019-04-21T08:52:20.953Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;词法分析器，对PL-0进行词法分析&quot;&gt;&lt;a href=&quot;#词法分析器，对PL-0进行词法分析&quot; class=&quot;headerlink&quot; title=&quot;词法分析器，对PL/0进行词法分析&quot;&gt;&lt;/a&gt;词法分析器，对PL/0进行词法分析&lt;/h2&gt;&lt;h3
+        
+      
+    
+    </summary>
+    
+      <category term="c语言" scheme="http://blog.ailuoku6.top/categories/c%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="编译原理" scheme="http://blog.ailuoku6.top/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/"/>
+    
+  </entry>
   
   <entry>
     <title>git 的基本操作</title>
@@ -125,7 +151,7 @@
     <link href="http://blog.ailuoku6.top/2018/11/18/jin-nian-shu-jia-bu-ac/"/>
     <id>http://blog.ailuoku6.top/2018/11/18/jin-nian-shu-jia-bu-ac/</id>
     <published>2018-11-18T03:07:47.000Z</published>
-    <updated>2018-11-18T03:35:01.704Z</updated>
+    <updated>2019-04-21T08:47:21.735Z</updated>
     
     <summary type="html">
     
@@ -142,7 +168,7 @@
       <category term="c语言" scheme="http://blog.ailuoku6.top/categories/c%E8%AF%AD%E8%A8%80/"/>
     
     
-      <category term="ACM" scheme="http://blog.ailuoku6.top/tags/ACM/"/>
+      <category term="OJ" scheme="http://blog.ailuoku6.top/tags/OJ/"/>
     
   </entry>
   
