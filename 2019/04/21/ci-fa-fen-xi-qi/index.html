@@ -12,8 +12,8 @@ procedure   p;
 begin
 end.
 
-代码#include &#34;stdio.h&#34;
-#inclu">
+代码#include &amp;lt;fstream&gt;
+#in">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -251,7 +251,8 @@ procedure   p;
 begin
 end.
 
-</code></pre><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre class=" language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">"stdio.h"</span></span>
+</code></pre><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre class=" language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;fstream></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">"stdio.h"</span></span>
 <span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">"stdlib.h"</span></span>
 <span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">"string.h"</span></span>
 <span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">"iostream"</span></span>
@@ -262,14 +263,12 @@ using namespace std<span class="token punctuation">;</span>
         <span class="token string">"const"</span><span class="token punctuation">,</span><span class="token string">"var"</span><span class="token punctuation">,</span><span class="token string">"procedure"</span><span class="token punctuation">,</span><span class="token string">"begin"</span><span class="token punctuation">,</span><span class="token string">"end"</span><span class="token punctuation">,</span><span class="token string">"odd"</span><span class="token punctuation">,</span><span class="token string">"if"</span><span class="token punctuation">,</span><span class="token string">"then"</span><span class="token punctuation">,</span><span class="token string">"call"</span><span class="token punctuation">,</span><span class="token string">"while"</span><span class="token punctuation">,</span><span class="token string">"do"</span><span class="token punctuation">,</span>
         <span class="token string">"read"</span><span class="token punctuation">,</span><span class="token string">"write"</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
-<span class="token comment" spellcheck="true">//界符运算符表,根据需要可以自行增加</span>
+<span class="token comment" spellcheck="true">//运算符表,根据需要可以自行增加</span>
 <span class="token keyword">static</span> <span class="token keyword">char</span> operatorCode<span class="token punctuation">[</span><span class="token number">11</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
         <span class="token string">"+"</span><span class="token punctuation">,</span><span class="token string">"-"</span><span class="token punctuation">,</span><span class="token string">"*"</span><span class="token punctuation">,</span><span class="token string">"/"</span><span class="token punctuation">,</span><span class="token string">"&lt;"</span><span class="token punctuation">,</span><span class="token string">"&lt;="</span><span class="token punctuation">,</span><span class="token string">">"</span><span class="token punctuation">,</span><span class="token string">">="</span><span class="token punctuation">,</span><span class="token string">"#"</span><span class="token punctuation">,</span><span class="token string">"="</span><span class="token punctuation">,</span><span class="token string">":="</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-<span class="token keyword">static</span>  <span class="token keyword">char</span> IDentifierTbl<span class="token punctuation">[</span><span class="token number">1000</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">50</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token string">""</span> <span class="token punctuation">}</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//标识符表</span>
-
-<span class="token keyword">static</span> <span class="token keyword">char</span> Delimiter<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+<span class="token keyword">static</span> <span class="token keyword">char</span> Delimiter<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token comment" spellcheck="true">//界符表</span>
         <span class="token string">'('</span><span class="token punctuation">,</span>
         <span class="token string">')'</span><span class="token punctuation">,</span>
         <span class="token string">','</span><span class="token punctuation">,</span>
@@ -277,32 +276,37 @@ using namespace std<span class="token punctuation">;</span>
         <span class="token string">'.'</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-<span class="token comment" spellcheck="true">//enum symbol{</span>
-<span class="token comment" spellcheck="true">//    nul,ident,number,plus,minus,</span>
-<span class="token comment" spellcheck="true">//    times,slash,addsym,eql,neq,</span>
-<span class="token comment" spellcheck="true">//    lss,leq,gtr,geq,lparen,</span>
-<span class="token comment" spellcheck="true">//    rparen,comma,semicolon,period,becomes,</span>
-<span class="token comment" spellcheck="true">//    beginsym,endsym,ifsym,thensym,whilesym,</span>
-<span class="token comment" spellcheck="true">//    writesym,readsym,dosym,callsym,constsym,</span>
-<span class="token comment" spellcheck="true">//    varsym,procsym,</span>
-<span class="token comment" spellcheck="true">//};</span>
+<span class="token keyword">static</span> <span class="token keyword">char</span> ID<span class="token punctuation">[</span><span class="token number">1000</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">50</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token string">""</span> <span class="token punctuation">}</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//标识符表</span>
+
+<span class="token keyword">static</span> <span class="token keyword">char</span> NUM<span class="token punctuation">[</span><span class="token number">1000</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">50</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token string">""</span> <span class="token punctuation">}</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//用户定义的数</span>
+
+<span class="token keyword">enum</span> symbol<span class="token punctuation">{</span>
+    nul<span class="token punctuation">,</span><span class="token comment" spellcheck="true">//无实际意义</span>
+    ident<span class="token punctuation">,</span><span class="token comment" spellcheck="true">//标识符</span>
+    number<span class="token punctuation">,</span><span class="token comment" spellcheck="true">//整数</span>
+    Plus<span class="token punctuation">,</span>minus<span class="token punctuation">,</span>times<span class="token punctuation">,</span>slash<span class="token punctuation">,</span>lss<span class="token punctuation">,</span>leq<span class="token punctuation">,</span>gtr<span class="token punctuation">,</span>geq<span class="token punctuation">,</span>neq<span class="token punctuation">,</span>eql <span class="token punctuation">,</span>becomes<span class="token punctuation">,</span> <span class="token comment" spellcheck="true">//运算符</span>
+    lparen<span class="token punctuation">,</span>rparen<span class="token punctuation">,</span>comma<span class="token punctuation">,</span>semicolon<span class="token punctuation">,</span>period<span class="token punctuation">,</span>            <span class="token comment" spellcheck="true">//界符</span>
+    constsym<span class="token punctuation">,</span>varsym<span class="token punctuation">,</span>procsym<span class="token punctuation">,</span>beginsym<span class="token punctuation">,</span>endsym<span class="token punctuation">,</span>oddsym<span class="token punctuation">,</span>ifsym<span class="token punctuation">,</span>thensym<span class="token punctuation">,</span><span class="token comment" spellcheck="true">//保留字表</span>
+    callsym<span class="token punctuation">,</span>whilesym<span class="token punctuation">,</span>dosym<span class="token punctuation">,</span>readsym<span class="token punctuation">,</span>writesym<span class="token punctuation">,</span>
+    unknown<span class="token punctuation">,</span><span class="token comment" spellcheck="true">//未知字符</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
 
 <span class="token keyword">int</span> <span class="token function">SearchReserveWord</span><span class="token punctuation">(</span><span class="token keyword">char</span> reserWord<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token keyword">char</span> str<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
     <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span><span class="token number">13</span><span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">strcmp</span><span class="token punctuation">(</span>reserWord<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> str<span class="token punctuation">)</span><span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">return</span> i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> i<span class="token operator">+</span>constsym<span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
-    <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> nul<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 
 <span class="token keyword">int</span> <span class="token function">SearchoperatorCode</span><span class="token punctuation">(</span><span class="token keyword">char</span> operatorcode<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token keyword">char</span> str<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
     <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">11</span><span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">strcmp</span><span class="token punctuation">(</span>operatorcode<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span>str<span class="token punctuation">)</span><span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token keyword">return</span> <span class="token number">20</span><span class="token operator">+</span>i<span class="token punctuation">;</span>
+            <span class="token keyword">return</span> i<span class="token operator">+</span>Plus<span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
-    <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> nul<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 
 bool <span class="token function">IsLetter</span><span class="token punctuation">(</span><span class="token keyword">char</span> letter<span class="token punctuation">)</span><span class="token punctuation">{</span>
@@ -318,19 +322,6 @@ bool <span class="token function">IsNum</span><span class="token punctuation">(<
     <span class="token punctuation">}</span>
     <span class="token keyword">return</span> false<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-
-<span class="token comment" spellcheck="true">//void filterResource(char r[],int p){//滤空格和特殊字符</span>
-<span class="token comment" spellcheck="true">//    char tempStr[10000];</span>
-<span class="token comment" spellcheck="true">//    int count = 0;</span>
-<span class="token comment" spellcheck="true">//    for (int i = 0; i&lt;=p; i++) {</span>
-<span class="token comment" spellcheck="true">//        if ((r[i]==' '&amp;&amp;count!=0&amp;&amp;tempStr[count-1]==' ')||r[i]=='\n'||r[i]=='\t'||r[i]=='\v'||r[i]=='\r') {</span>
-<span class="token comment" spellcheck="true">//            continue;</span>
-<span class="token comment" spellcheck="true">//        }</span>
-<span class="token comment" spellcheck="true">//        tempStr[count++] = r[i];</span>
-<span class="token comment" spellcheck="true">//    }</span>
-<span class="token comment" spellcheck="true">//    tempStr[count] = '\0';</span>
-<span class="token comment" spellcheck="true">//    strcpy(r, tempStr);</span>
-<span class="token comment" spellcheck="true">//}</span>
 
 <span class="token keyword">void</span> <span class="token function">Scanner</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">&amp;</span>syn<span class="token punctuation">,</span><span class="token keyword">char</span> r<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token keyword">char</span> token<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token keyword">int</span> <span class="token operator">&amp;</span>p<span class="token punctuation">)</span><span class="token punctuation">{</span>
     <span class="token keyword">int</span> count <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
@@ -351,8 +342,8 @@ bool <span class="token function">IsNum</span><span class="token punctuation">(<
         <span class="token punctuation">}</span>
         token<span class="token punctuation">[</span>count<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'\0'</span><span class="token punctuation">;</span>
         syn <span class="token operator">=</span> <span class="token function">SearchReserveWord</span><span class="token punctuation">(</span>reserveWord<span class="token punctuation">,</span> token<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>syn<span class="token operator">==</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            syn <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>syn<span class="token operator">==</span>nul<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            syn <span class="token operator">=</span> ident<span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
         <span class="token keyword">return</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
@@ -362,7 +353,7 @@ bool <span class="token function">IsNum</span><span class="token punctuation">(<
             p<span class="token operator">++</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
         token<span class="token punctuation">[</span>count<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'\0'</span><span class="token punctuation">;</span>
-        syn <span class="token operator">=</span> <span class="token number">99</span><span class="token punctuation">;</span>
+        syn <span class="token operator">=</span> number<span class="token punctuation">;</span>
         <span class="token keyword">return</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
     <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>r<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token operator">==</span><span class="token string">'('</span><span class="token operator">||</span>r<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token operator">==</span><span class="token string">')'</span><span class="token operator">||</span>r<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token operator">==</span><span class="token string">','</span><span class="token operator">||</span>r<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token operator">==</span><span class="token string">';'</span><span class="token operator">||</span>r<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token operator">==</span><span class="token string">'.'</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment" spellcheck="true">//判断是否为界符</span>
@@ -370,7 +361,7 @@ bool <span class="token function">IsNum</span><span class="token punctuation">(<
         token<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'\0'</span><span class="token punctuation">;</span>
         <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span><span class="token number">5</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             <span class="token keyword">if</span> <span class="token punctuation">(</span>Delimiter<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">==</span>r<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                syn <span class="token operator">=</span> <span class="token number">14</span><span class="token operator">+</span>i<span class="token punctuation">;</span>
+                syn <span class="token operator">=</span> i<span class="token operator">+</span>lparen<span class="token punctuation">;</span>
                 <span class="token keyword">break</span><span class="token punctuation">;</span>
             <span class="token punctuation">}</span>
         <span class="token punctuation">}</span>
@@ -394,14 +385,18 @@ bool <span class="token function">IsNum</span><span class="token punctuation">(<
             token<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'\0'</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
         syn <span class="token operator">=</span> <span class="token function">SearchoperatorCode</span><span class="token punctuation">(</span>operatorCode<span class="token punctuation">,</span>token<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>syn<span class="token operator">==</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            syn <span class="token operator">=</span> <span class="token number">101</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">//        if (syn==-1){</span>
+<span class="token comment" spellcheck="true">//            syn = 101;</span>
+<span class="token comment" spellcheck="true">//        }</span>
         <span class="token keyword">return</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 
     <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>r<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token operator">==</span><span class="token constant">EOF</span><span class="token operator">||</span>r<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token operator">==</span><span class="token string">'\0'</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        syn <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        syn <span class="token operator">=</span> nul<span class="token punctuation">;</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span><span class="token punctuation">{</span>
+        syn <span class="token operator">=</span> unknown<span class="token punctuation">;</span>
         <span class="token keyword">return</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
@@ -412,7 +407,8 @@ bool <span class="token function">IsNum</span><span class="token punctuation">(<
     <span class="token keyword">char</span> token<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
     <span class="token keyword">int</span> syn <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span>length <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//length是标识符表长度</span>
     <span class="token keyword">int</span> p <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-    FILE <span class="token operator">*</span>fp<span class="token punctuation">,</span><span class="token operator">*</span>fp1<span class="token punctuation">;</span>
+    FILE <span class="token operator">*</span>fp<span class="token punctuation">;</span>
+    ofstream <span class="token function">outfile</span><span class="token punctuation">(</span><span class="token string">"result.txt"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
     <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>fp <span class="token operator">=</span> <span class="token function">fopen</span><span class="token punctuation">(</span><span class="token string">"Code.txt"</span><span class="token punctuation">,</span> <span class="token string">"r"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span>
     <span class="token punctuation">{</span><span class="token comment" spellcheck="true">//打开源程序</span>
@@ -430,46 +426,41 @@ bool <span class="token function">IsNum</span><span class="token punctuation">(<
 
     cout<span class="token operator">&lt;&lt;</span>resourceCode<span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
 
-    <span class="token comment" spellcheck="true">//filterResource(resourceCode,p);</span>
-
-    <span class="token comment" spellcheck="true">//cout&lt;&lt;resourceCode&lt;&lt;endl;</span>
-
     p <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
 
-    <span class="token keyword">while</span><span class="token punctuation">(</span>syn<span class="token operator">!=</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span>syn<span class="token operator">!=</span>nul<span class="token punctuation">)</span><span class="token punctuation">{</span>
         <span class="token function">Scanner</span><span class="token punctuation">(</span>syn<span class="token punctuation">,</span>resourceCode<span class="token punctuation">,</span>token<span class="token punctuation">,</span>p<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>syn<span class="token operator">==</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment" spellcheck="true">//标识符</span>
+        outfile <span class="token operator">&lt;&lt;</span> <span class="token string">"("</span> <span class="token operator">&lt;&lt;</span> syn <span class="token operator">&lt;&lt;</span> <span class="token string">","</span> <span class="token operator">&lt;&lt;</span> token <span class="token operator">&lt;&lt;</span> <span class="token string">")"</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>syn<span class="token operator">==</span>ident<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment" spellcheck="true">//标识符</span>
             bool IsExit <span class="token operator">=</span> false<span class="token punctuation">;</span>
             <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> length<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
-                <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">strcmp</span><span class="token punctuation">(</span>IDentifierTbl<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span>token<span class="token punctuation">)</span><span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">strcmp</span><span class="token punctuation">(</span>ID<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span>token<span class="token punctuation">)</span><span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
                     IsExit <span class="token operator">=</span> true<span class="token punctuation">;</span>
                     <span class="token keyword">break</span><span class="token punctuation">;</span>
                 <span class="token punctuation">}</span>
             <span class="token keyword">if</span> <span class="token punctuation">(</span>IsExit<span class="token operator">==</span> false<span class="token punctuation">)</span><span class="token punctuation">{</span>
-                <span class="token function">strcpy</span><span class="token punctuation">(</span>IDentifierTbl<span class="token punctuation">[</span>length<span class="token punctuation">]</span><span class="token punctuation">,</span>token<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token function">strcpy</span><span class="token punctuation">(</span>ID<span class="token punctuation">[</span>length<span class="token punctuation">]</span><span class="token punctuation">,</span>token<span class="token punctuation">)</span><span class="token punctuation">;</span>
                 length<span class="token operator">++</span><span class="token punctuation">;</span>
             <span class="token punctuation">}</span>
             cout<span class="token operator">&lt;&lt;</span>token<span class="token operator">&lt;&lt;</span><span class="token string">"标识符"</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>syn<span class="token operator">>=</span><span class="token number">1</span><span class="token operator">&amp;&amp;</span>syn<span class="token operator">&lt;=</span><span class="token number">13</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment" spellcheck="true">//保留字</span>
+        <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>syn<span class="token operator">>=</span>constsym<span class="token operator">&amp;&amp;</span>syn<span class="token operator">&lt;=</span>writesym<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment" spellcheck="true">//保留字</span>
             cout<span class="token operator">&lt;&lt;</span>token<span class="token operator">&lt;&lt;</span><span class="token string">"保留字"</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>syn<span class="token operator">>=</span><span class="token number">14</span><span class="token operator">&amp;&amp;</span>syn<span class="token operator">&lt;=</span><span class="token number">18</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment" spellcheck="true">//界符</span>
+        <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>syn<span class="token operator">>=</span>lparen<span class="token operator">&amp;&amp;</span>syn<span class="token operator">&lt;=</span>period<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment" spellcheck="true">//界符</span>
             cout<span class="token operator">&lt;&lt;</span>token<span class="token operator">&lt;&lt;</span><span class="token string">"界符"</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>syn<span class="token operator">>=</span><span class="token number">20</span><span class="token operator">&amp;&amp;</span>syn<span class="token operator">&lt;=</span><span class="token number">30</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment" spellcheck="true">//操作符(运算符)</span>
+        <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>syn<span class="token operator">>=</span>Plus<span class="token operator">&amp;&amp;</span>syn<span class="token operator">&lt;=</span>becomes<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment" spellcheck="true">//操作符(运算符)</span>
             cout<span class="token operator">&lt;&lt;</span>token<span class="token operator">&lt;&lt;</span><span class="token string">"运算符"</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>syn<span class="token operator">==</span><span class="token number">99</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment" spellcheck="true">//整数</span>
+        <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>syn<span class="token operator">==</span>number<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment" spellcheck="true">//整数</span>
             cout<span class="token operator">&lt;&lt;</span>token<span class="token operator">&lt;&lt;</span><span class="token string">"整数"</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>syn<span class="token operator">==</span><span class="token number">101</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment" spellcheck="true">//未知字符</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>syn<span class="token operator">==</span>unknown<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment" spellcheck="true">//未知字符</span>
             cout<span class="token operator">&lt;&lt;</span>token<span class="token operator">&lt;&lt;</span><span class="token string">"未知字符"</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
 
-    cout<span class="token operator">&lt;&lt;</span><span class="token string">"标识符有:"</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
-
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> length<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
-        cout<span class="token operator">&lt;&lt;</span>IDentifierTbl<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+    outfile<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
+
 
 </code></pre>
 <h3 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h3><pre><code>/Users/ailuoku6/CLionProjects/Cifafenxi1/cmake-build-debug/Cifafenxi1
@@ -495,13 +486,25 @@ p标识符
 begin保留字
 end保留字
 .界符
-标识符有:
-a
-b
-c
-p
 
 Process finished with exit code 0
+</code></pre><h3 id="result-txt"><a href="#result-txt" class="headerlink" title="result.txt"></a>result.txt</h3><pre><code>(19,const)
+(1,a)
+(8,&lt;=)
+(2,10)
+(17,;)
+(20,var)
+(1,b)
+(16,,)
+(1,c)
+(17,;)
+(21,procedure)
+(1,p)
+(17,;)
+(22,begin)
+(23,end)
+(18,.)
+(0,)
 
 </code></pre>
             </div>
@@ -679,8 +682,8 @@ procedure   p;
 begin
 end.
 
-代码#include "stdio.h"
-#inclu</div>
+代码#include &lt;fstream>
+#in</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-21
