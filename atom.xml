@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.ailuoku6.top/"/>
-  <updated>2019-04-27T09:01:30.383Z</updated>
+  <updated>2019-06-03T15:32:02.084Z</updated>
   <id>http://blog.ailuoku6.top/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>图的m着色问题</title>
+    <link href="http://blog.ailuoku6.top/2019/06/03/tu-de-m-zhao-se-wen-ti/"/>
+    <id>http://blog.ailuoku6.top/2019/06/03/tu-de-m-zhao-se-wen-ti/</id>
+    <published>2019-06-03T15:22:26.000Z</published>
+    <updated>2019-06-03T15:32:02.084Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;Description&quot;&gt;&lt;a href=&quot;#Description&quot; class=&quot;headerlink&quot; title=&quot;Description&quot;&gt;&lt;/a&gt;Description&lt;/h2&gt;&lt;p&gt;给定无向连通图G=(V,
+        
+      
+    
+    </summary>
+    
+      <category term="c语言" scheme="http://blog.ailuoku6.top/categories/c%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="算法" scheme="http://blog.ailuoku6.top/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
   
   <entry>
     <title>词法分析器</title>
