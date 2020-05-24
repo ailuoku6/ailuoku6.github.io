@@ -3,6 +3,29 @@
   
     
     <entry>
+      <title>搜索引擎技巧</title>
+      <link href="/2020/05/25/sou-suo-yin-qing-ji-qiao/"/>
+      <url>/2020/05/25/sou-suo-yin-qing-ji-qiao/</url>
+      
+        <content type="html"><![CDATA[<h2 id="排除关键词"><a href="#排除关键词" class="headerlink" title="排除关键词"></a>排除关键词</h2><pre><code>锤子 -手机</code></pre><p>解释：单纯搜索锤子而非锤子手机</p><h2 id="精确搜索"><a href="#精确搜索" class="headerlink" title="精确搜索"></a>精确搜索</h2><pre><code>&quot;关键词&quot;</code></pre><p>解释：给关键词加英文引号，搜索包含关键词全文的条目</p><h2 id="指定网站内搜索"><a href="#指定网站内搜索" class="headerlink" title="指定网站内搜索"></a>指定网站内搜索</h2><pre><code>site:域名 + 关键词</code></pre><p>解释：搜索指定网站内的包含关键词的条目</p><h2 id="指定文件格式搜索"><a href="#指定文件格式搜索" class="headerlink" title="指定文件格式搜索"></a>指定文件格式搜索</h2><pre><code>filetype:文件格式 + 关键词</code></pre><p>例子：</p><pre><code>filetype:pdf GB2626</code></pre><p>解释：搜索带指定文件格式且含有关键词的条目</p><h2 id="指定标题搜索"><a href="#指定标题搜索" class="headerlink" title="指定标题搜索"></a>指定标题搜索</h2><pre><code>intitle:关键词</code></pre><h2 id="三种指定范围搜索"><a href="#三种指定范围搜索" class="headerlink" title="三种指定范围搜索"></a>三种指定范围搜索</h2><p>1</p><pre><code>keyword intext:subKeyword</code></pre><p>解释：要求在搜索网页的正文中包含subKeyword</p><p>2</p><pre><code>allintext:keyword1 keyword2...</code></pre><p>解释：要求搜索结果的正文里同时包含allintext后的所有关键词</p><p>3</p><pre><code>inurl:keyword</code></pre><p>解释：要求所有搜索结果url中包含keyword</p><h1 id="善用空格对多个关键词进行模糊搜索"><a href="#善用空格对多个关键词进行模糊搜索" class="headerlink" title="善用空格对多个关键词进行模糊搜索"></a>善用空格对多个关键词进行模糊搜索</h1><h1 id="以上技巧可以组合使用"><a href="#以上技巧可以组合使用" class="headerlink" title="以上技巧可以组合使用"></a>以上技巧可以组合使用</h1>]]></content>
+      
+      
+      <categories>
+          
+          <category> 检索 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 检索 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>智力题</title>
       <link href="/2020/03/30/zhi-li-ti/"/>
       <url>/2020/03/30/zhi-li-ti/</url>

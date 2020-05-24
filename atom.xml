@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.ailuoku6.top/"/>
-  <updated>2020-03-30T14:26:23.318Z</updated>
+  <updated>2020-05-24T16:27:24.485Z</updated>
   <id>http://blog.ailuoku6.top/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>搜索引擎技巧</title>
+    <link href="http://blog.ailuoku6.top/2020/05/25/sou-suo-yin-qing-ji-qiao/"/>
+    <id>http://blog.ailuoku6.top/2020/05/25/sou-suo-yin-qing-ji-qiao/</id>
+    <published>2020-05-24T16:00:14.000Z</published>
+    <updated>2020-05-24T16:27:24.485Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;排除关键词&quot;&gt;&lt;a href=&quot;#排除关键词&quot; class=&quot;headerlink&quot; title=&quot;排除关键词&quot;&gt;&lt;/a&gt;排除关键词&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;锤子 -手机
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;解释：单纯搜索锤子而非锤子手机&lt;/p&gt;
+&lt;h2
+        
+      
+    
+    </summary>
+    
+      <category term="检索" scheme="http://blog.ailuoku6.top/categories/%E6%A3%80%E7%B4%A2/"/>
+    
+    
+      <category term="检索" scheme="http://blog.ailuoku6.top/tags/%E6%A3%80%E7%B4%A2/"/>
+    
+  </entry>
   
   <entry>
     <title>智力题</title>
